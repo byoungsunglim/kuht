@@ -17,6 +17,7 @@ import {
   StatusBar,
   Image,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -28,22 +29,22 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Background from './assets/icons/background.jpg';
-import kakaoHelper from './components/KakaoHelper';
+import KakaoHelper from './components/KakaoHelper';
+
+import KakaoBtn from './assets/icons/kakao_login_btn.png';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="white-content" />
       <View style={styles.body}>
-        <Image style={styles.background} source={Background}/>
+        <Image style={styles.background} source={Background} />
         <Text style={styles.title}>KUHT</Text>
-      </View>
-      <View style={styles.footer}>
-        <Button 
-          style={styles.button}
-          title="카카오톡으로 시작하기"
-          onPress={()=> kakaoHelper.login()}
-        />
+        <TouchableOpacity
+          style={styles.login_btn}
+          onPress={() => KakaoHelper.login()}>
+          <Image source={KakaoBtn} style={styles.login_image} />
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -51,34 +52,39 @@ const App: () => React$Node = () => {
 
 const styles = StyleSheet.create({
   body: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height - 200,
+    width: '100%',
+    height: '100%',
     backgroundColor: Colors.white,
   },
   background: {
-    top: 100,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height * 0.5,
+    top: '10%',
+    width: '100%',
+    height: '50%',
   },
   title: {
-    top: 50,
+    position: 'absolute',
+    top: '60%',
+    width: '100%',
+    height: 100,
     fontFamily: 'IndieFlower-Regular',
     fontSize: 100,
     textAlign: 'center',
     color: Colors.black,
+    zIndex: 2,
   },
-  footer: {
-    width: Dimensions.get('window').width,
-    height: 100,
-    alignContent: 'center',
-    display: 'flex',
+  login_btn: {
+    position: 'absolute',
+    bottom: 100,
+    width: '100%',
+
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: Colors.white,
   },
-  button: {
-    width: 10,
-    height: 300,
-    fontSize: 30,
-    textAlign: 'center',
-    color: Colors.black,
+  login_image: {
+    // width: 80,
+    height: 50,
+    resizeMode: 'contain',
   },
 });
 

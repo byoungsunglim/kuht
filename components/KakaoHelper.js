@@ -1,22 +1,24 @@
 import KakaoLogins from '@react-native-seoul/kakao-login';
 
-var kakaoHelper = {
+var KakaoHelper = {
   login: login,
   logout: logout,
 };
 
 function login() {
-  KakaoLogins.login().then(result => {
-    KakaoLogins.getProfile().then(result => {
-      return result;
+  KakaoLogins.login().then((result) => {
+    console.log(`logout: ${JSON.stringify(result)}`);
+    KakaoLogins.getProfile().then((profile) => {
+      console.log(`logout: ${JSON.stringify(profile)}`);
+      return profile;
     });
   });
 }
 
 function logout() {
-  KakaoLogins.logout().then(result => {
+  KakaoLogins.logout().then((result) => {
     console.log(`logout: ${JSON.stringify(result)}`);
   });
 }
 
-module.exports = kakaoHelper;
+module.exports = KakaoHelper;
