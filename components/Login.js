@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {StackActions} from '@react-navigation/native';
 
 import {
   StyleSheet,
@@ -12,11 +13,30 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import Background from '../assets/icons/background.jpg';
-import KakaoHelper from './KakaoHelper';
 
 import KakaoBtn from '../assets/icons/kakao_login_btn.png';
+import KakaoLogins from '@react-native-seoul/kakao-login';
 
-function Login() {
+function Login({navigation}) {
+  function handleLogin() {
+    KakaoLogins.login()
+      .then((result) => {
+        console.log(`logout: ${JSON.stringify(result)}`);
+        KakaoLogins.getProfile()
+          .then((profile) => {
+            console.log(`logout: ${JSON.stringify(profile)}`);
+            navigation.dispatch(StackActions.replace('Home', {user: profile}));
+            return profile;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
   return (
     <>
       <StatusBar barStyle="white-content" />
@@ -25,7 +45,7 @@ function Login() {
         <Text style={styles.title}>KUHT</Text>
         <TouchableOpacity
           style={styles.login_btn}
-          onPress={() => KakaoHelper.login()}>
+          onPress={() => handleLogin()}>
           <Image source={KakaoBtn} style={styles.login_image} />
         </TouchableOpacity>
       </View>
