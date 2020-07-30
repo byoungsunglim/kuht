@@ -6,86 +6,28 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {
-  Dimensions,
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  Image,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Login from './components/Login';
 
-import Background from './assets/icons/background.jpg';
-import KakaoHelper from './components/KakaoHelper';
+const Stack = createStackNavigator();
 
-import KakaoBtn from './assets/icons/kakao_login_btn.png';
+function App() {
+  const [auth, setAuth] = useState(false);
 
-const App: () => React$Node = () => {
   return (
-    <>
-      <StatusBar barStyle="white-content" />
-      <View style={styles.body}>
-        <Image style={styles.background} source={Background} />
-        <Text style={styles.title}>KUHT</Text>
-        <TouchableOpacity
-          style={styles.login_btn}
-          onPress={() => KakaoHelper.login()}>
-          <Image source={KakaoBtn} style={styles.login_image} />
-        </TouchableOpacity>
-      </View>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="Login" component={Login} />
+        {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  body: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: Colors.white,
-  },
-  background: {
-    top: '10%',
-    width: '100%',
-    height: '50%',
-  },
-  title: {
-    position: 'absolute',
-    top: '60%',
-    width: '100%',
-    height: 100,
-    fontFamily: 'IndieFlower-Regular',
-    fontSize: 100,
-    textAlign: 'center',
-    color: Colors.black,
-    zIndex: 2,
-  },
-  login_btn: {
-    position: 'absolute',
-    bottom: 100,
-    width: '100%',
-
-    alignItems: 'center',
-    justifyContent: 'center',
-    // backgroundColor: Colors.white,
-  },
-  login_image: {
-    // width: 80,
-    height: 50,
-    resizeMode: 'contain',
-  },
-});
+}
 
 export default App;
