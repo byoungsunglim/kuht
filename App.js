@@ -12,6 +12,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Login from './components/Login';
 import Home from './components/Home';
+import Dual from './components/Dual';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ function App() {
         }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Dual" component={Dual} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,6 +8,7 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -68,25 +69,25 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '60%',
     width: '100%',
-    height: 100,
+    height: '10%',
     fontFamily: 'IndieFlower-Regular',
-    fontSize: 100,
+    fontSize: Dimensions.get('window').height * 0.1,
     textAlign: 'center',
     color: Colors.black,
     zIndex: 2,
   },
   login_btn: {
     position: 'absolute',
-    bottom: 100,
+    top: '70%',
     width: '100%',
-
+    height: '30%',
     alignItems: 'center',
     justifyContent: 'center',
     // backgroundColor: Colors.white,
   },
   login_image: {
-    // width: 80,
-    height: 50,
+    width: '50%',
+    // height: '30%',
     resizeMode: 'contain',
   },
 });

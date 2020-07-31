@@ -10,6 +10,7 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -22,11 +23,13 @@ function Home({navigation}) {
           style={styles.single}
           onPress={() => navigation.navigate('Single')}>
           <Image source={SingleImg} style={styles.img} />
+          <Text style={styles.txt}>Single</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.dual}
           onPress={() => navigation.navigate('Dual')}>
           <Image source={DualImg} style={styles.img} />
+          <Text style={styles.txt}>Dual</Text>
         </TouchableOpacity>
       </View>
     </>
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
   body: {
     width: '100%',
     height: '100%',
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.black,
   },
   single: {
     position: 'absolute',
@@ -59,6 +62,11 @@ const styles = StyleSheet.create({
     height: '70%',
     borderRadius: 100,
     resizeMode: 'cover',
+  },
+  txt: {
+    fontSize: Dimensions.get('window').height * 0.05,
+    fontFamily: 'IndieFlower-Regular',
+    color: Colors.white,
   },
 });
 
